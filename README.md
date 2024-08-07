@@ -29,16 +29,8 @@ This project provides a comprehensive solution for tracking employees, their tra
    npm install
     npm start
    ```
-2. **Create a .env file in the `backend` directory with the following variables:**
+2. **Create a .env file in the `backend` directory with the  variables:**
 
-  ```bash
-      PORT=5000
-      NODE_ENV=development
-      DATABASE=<your-database-url>
-      DATABASE_PASSWORD=<your-database-password>
-      JWT_SECRET=<your-jwt-secret>
-      JWT_COOKIE_EXPIRES_IN=<cookie-expiry-time>
-  ```
 3. **Start the node.js server
 
    ```bash
