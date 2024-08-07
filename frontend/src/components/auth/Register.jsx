@@ -206,22 +206,6 @@ const navigate = useNavigate();
                     className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-600 shadow-sm h-9"
                   />
                 </div>
-
-                <div className="col-span-6">
-                  <label htmlFor="MarketingAccept" className="flex gap-4">
-                    <input
-                      type="checkbox"
-                      id="MarketingAccept"
-                      name="marketing_accept"
-                      className="size-5 rounded-md border-gray-200 bg-white shadow-sm h-6"
-                    />
-
-                    <span className="text-sm text-gray-700">
-                      I want to receive emails about events and product updates
-                    </span>
-                  </label>
-                </div>
-
                 <div className="col-span-6">
                   <p className="text-sm text-gray-500 text-center">
                     By creating an account, you agree to our{" "}
