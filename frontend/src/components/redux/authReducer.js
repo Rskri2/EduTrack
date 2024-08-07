@@ -1,8 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 const BASEURL = `https://edu-track-nu.vercel.app/api/v1`;
-
-
 const authSlice = createSlice({
   name: "auth",
   initialState: {
@@ -20,16 +18,16 @@ const authSlice = createSlice({
     },
     registerSuccess(state) {
       state.isAuthenticated = true;
-      state.loadingReg = false
+      state.loadingReg = false;
     },
     updatedUser(state, action) {
       state.user = action.payload.user;
     },
     registerFailure(state){
-      state.loadingReg=false
+      state.loadingReg=false;
     },
     loginFailure(state){
-      state.loadingLogin=false
+      state.loadingLogin=false;
     }
   },
 });
@@ -55,7 +53,7 @@ export const loginUser = (credentials) => async (dispatch) => {
     const err = error?.response?.data?.message
     ? error.response.data.message
     : error.message;
-      dispatch(loginFailure)
+      dispatch(loginFailure())
     return { success: false, error: err };
   }
 };
@@ -134,7 +132,6 @@ export const fetchUser = ()=>async()=>{
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(response)
     return { success: true, users:response.data.users };
   }catch(error){
     const err = error?.response?.data?.message
@@ -161,10 +158,10 @@ export const deleteUser = (id)=>async()=>{
   return { success: false, error: err };
   }
 }
-export const editUser = (id)=>async()=>{
+export const editUser = (credentials)=>async()=>{
   const token = window.localStorage.getItem("token");
   try{
-     await axios.patch(`${BASEURL}/users/${id}`, {
+     await axios.patch(`${BASEURL}/users/${credentials.id}`, credentials.values,{
       withCredentials: true,
       headers: {
         Authorization: `Bearer ${token}`,
