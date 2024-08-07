@@ -43,15 +43,5 @@ This project provides a comprehensive solution for tracking employees, their tra
 - **Register New Employees**
   - Use the registration form to add new employees.
 
-- **View Transactions**
-  - Access a dashboard to view and manage financial transactions.
-
-- **Schedule Events**
-  - Create and manage events, including setting dates, times, and descriptions.
-
-### Employee
-
-- **View Pending Events**
-  - Access a personal dashboard to view events that are scheduled for them.
 
 
