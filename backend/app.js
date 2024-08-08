@@ -8,7 +8,7 @@ const userRouter = require(`${__dirname}/routes/userRoutes`);
 const errorControllers = require(`${__dirname}/controller/errorCtrl`);
 const app = express();
 app.use(cors({
-  origin:"https://edu-track-y9b6.vercel.app",
+  origin:process.env.FRONTEND_URL,
   credentials:true
 }))
 app.use(express.json());
