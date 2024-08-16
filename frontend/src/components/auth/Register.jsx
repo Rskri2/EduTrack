@@ -43,7 +43,7 @@ const navigate = useNavigate();
       message.error(error);
     }
     else if(visibleLogin === 1){
-      navigate("/dashboard")
+      navigate("/account-info")
     }
   }, [visibleLogin]); 
   return (
