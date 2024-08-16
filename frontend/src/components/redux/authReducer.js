@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-const BASEURL = `https://edu-track-nu.vercel.app/api/v1`;;
+const BASEURL = import.meta.env.VITE_BACKEND_URL;
 const authSlice = createSlice({
   name: "auth",
   initialState: {
