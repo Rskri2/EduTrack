@@ -44,4 +44,3 @@ This project provides a comprehensive solution for tracking employees, their tra
   - Use the registration form to add new employees.
 
 
-
