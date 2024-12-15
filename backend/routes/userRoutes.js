@@ -10,8 +10,8 @@ router.post("/updateMe", userController.updateMe);
 
 router.use(userController.restrictTo("Admin"));
 router.route("/")
-  .get(userController.fetchUser);
-
+  .get(userController.fetchUser)
+  .post(userController.registerUser);
 router
   .route("/:id")
   .get(userController.fetchUser)

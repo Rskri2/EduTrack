@@ -7,6 +7,7 @@ import {
   Table,
   Modal,
   InputNumber,
+  Select,
 } from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { message } from "antd";
@@ -38,14 +39,12 @@ export default function AddStudents() {
     await dispatch(deleteUser(key._id));
     const data = await dispatch(fetchUser());
     if (data.success) setDataSource(data.users);
-    
   };
 
   const defaultColumns = [
     {
       title: "Name",
       dataIndex: "name",
-      width: "30%",
       key: "name",
     },
     {
@@ -57,6 +56,11 @@ export default function AddStudents() {
       title: "Salary",
       key: "Salary",
       dataIndex: "salary",
+    },
+    {
+      title: "Department",
+      key: "Department",
+      dataIndex: "department",
     },
     {
       title: "Delete",
@@ -96,6 +100,7 @@ export default function AddStudents() {
     e.preventDefault();
     try {
       values = await form.validateFields();
+      
     } catch (errorInfo) {
       setOpen(false);
       return;
@@ -107,7 +112,7 @@ export default function AddStudents() {
     }
     setOpen(false);
   };
-  
+
   const handleSubmitEdit = async (e) => {
     e.preventDefault();
     let values;
@@ -125,7 +130,7 @@ export default function AddStudents() {
   useEffect(() => {
     const fetch = async () => {
       const res = await dispatch(fetchUser());
-      console.log(res)
+      console.log(res);
       if (res.success) {
         setDataSource(res.users);
       } else {
@@ -154,6 +159,28 @@ export default function AddStudents() {
       <Form.Item label="Email" name="email">
         <Input />
       </Form.Item>
+      <Form.Item
+            label="Department"
+            name="department"
+            required
+            tooltip="This is a required field"
+            rules={[
+              {
+                required: true,
+                message: "Department is a required field!",
+              },
+            ]}
+          >
+            <Select placeholder="Department">
+              <Select.Option value="Finance">Finance</Select.Option>
+              <Select.Option value="Marketing">Freelancing</Select.Option>
+              <Select.Option value="Software Engineer">
+                Investment
+              </Select.Option>
+              <Select.Option value="Content creation">Stock</Select.Option>
+              <Select.Option value="HR">HR</Select.Option>
+            </Select>
+          </Form.Item>
       <Form.Item label="Salary" name="salary">
         <InputNumber />
       </Form.Item>
@@ -182,13 +209,17 @@ export default function AddStudents() {
       salary: ["salary"],
       value: 0,
     },
+    {
+      department: ["department"],
+      value: "",
+    },
   ]);
   useEffect(() => {
-    console.log("here ")
     setFields([
       { name: ["name"], value: content ? content.name : "" },
       { name: ["email"], value: content ? content.email : "" },
       { name: ["salary"], value: content ? content.salary : 0 },
+      { name: ["department"], value: content ? content.department : "" },
     ]);
   }, [content]);
   return (
@@ -255,13 +286,35 @@ export default function AddStudents() {
             <InputNumber />
           </Form.Item>
           <Form.Item
+            label="Department"
+            name="department"
+            required
+            tooltip="This is a required field"
+            rules={[
+              {
+                required: true,
+                message: "Salary is a required field!",
+              },
+            ]}
+          >
+            <Select placeholder="Department">
+              <Select.Option value="Finance">Finance</Select.Option>
+              <Select.Option value="Marketing">Freelancing</Select.Option>
+              <Select.Option value="Software Engineer">
+                Investment
+              </Select.Option>
+              <Select.Option value="Content creation">Stock</Select.Option>
+              <Select.Option value="HR">HR</Select.Option>
+            </Select>
+          </Form.Item>
+          <Form.Item
             wrapperCol={{
               ...layout.wrapperCol,
               offset: 8,
             }}
           >
             <Button type="primary" onClick={handleSubmit}>
-              Close
+              Create
             </Button>
           </Form.Item>
         </Form>

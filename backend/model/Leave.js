@@ -26,7 +26,7 @@ const LeaveSchema = new mongoose.Schema({
 LeaveSchema.pre('find', function (next) {
     this.populate({
         path:'applicant',
-        select:'name'
+        select:'name department'
     })
     next();
 })

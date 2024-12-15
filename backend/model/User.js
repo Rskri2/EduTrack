@@ -36,6 +36,10 @@ const userSchema = new mongoose.Schema(
     },
     salary:{
       type:Number
+    },
+    department:{
+      type:String,
+      enum:["Finance", "Marketing", "Software Engineer", "Content creation", "HR"],
     }
   },
   {

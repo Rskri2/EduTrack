@@ -2,7 +2,6 @@ import {
   UserOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  MoneyCollectOutlined,
   SettingOutlined,
   DashboardOutlined,
   UserAddOutlined,
@@ -16,10 +15,12 @@ import { Button, Layout, Menu, theme } from "antd";
 import SanctionLeave from "./Leave/SanctionLeave";
 import  ApplyLeave  from "./Leave/ApplyLeave";
 import { useEffect } from "react";
+import Dashboard from "./Dashboard";
+
 const { Header, Sider } = Layout;
 export default function AccountPage() {
   const [option, setOption] = useState(1);
-  const [myrole, setMyRole] = useState(1)
+  const [myrole, setMyRole] = useState(1);
   const handleLogout = () => {
     window.localStorage.removeItem("token");
     message.success("Logged out");
@@ -33,7 +34,6 @@ export default function AccountPage() {
     token: { colorBgContainer },
   } = theme.useToken();
   const changeOption = (value)=>{
-    console.log(value)
     setOption(value)
   }
   const  items=[
@@ -66,13 +66,6 @@ export default function AccountPage() {
       temp:1
     },
     {
-      key: "3",
-      icon: <MoneyCollectOutlined />,
-      label: "Salary",
-      onClick: () => changeOption(3),
-      temp:2
-    },
-    {
       key: "4",
       icon: <SettingOutlined />,
       label: "Settings",
@@ -87,8 +80,7 @@ export default function AccountPage() {
       temp:0
     },
   ]
-  const filterItems = items;
-  //const filterItems = items.filter(item => item.temp === myrole || item.temp === 0)
+  const filterItems = items.filter(item => item.temp === myrole || item.temp === 0)
   return (
     <>
       <Layout className="min-h-screen">
@@ -119,11 +111,14 @@ export default function AccountPage() {
               }}
             />
           </Header>
+        
 
+          {option == 1 && <Dashboard/>}
           {option == 2 &&  <SanctionLeave />}
           {option == 4 && <AccountInfo />}
           {option == 6 && <AddStudents />}
           {option == 7 && <ApplyLeave />}
+      
           
         </Layout>
       </Layout>

@@ -92,7 +92,12 @@ const SanctionLeave = () => {
     {
       title: "End Date",
       dataIndex: "endDate",
-      key:"endDare"
+      key:"endDate"
+    },
+    {
+      title:"Department",
+      dataIndex:"department",
+      key:"department"
     },
     {
       title: "Approve",

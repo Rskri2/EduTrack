@@ -23,9 +23,9 @@ exports.markLeave = catchAsync(async (req, res, next)=>{
 })
 
 exports.getLeaveByUserId = catchAsync(async(req, res, next)=>{
-    console.log(req)
+   
     const leave = await Leave.findBy({applicant:req.body.id});
-    console.log(leave)
+  
     res.status(200).json({
         status:"leave",
         leaveId:leave.id
@@ -62,5 +62,22 @@ exports.getLeaveByType = catchAsync(async(req, res, next)=>{
     })
 })
 
-
+exports.leaveStats = catchAsync(async(req, res, next)=>{
+    const leaves = await Leave.aggregate([
+        {
+            $group:{
+                _id:'$category',
+                count:{$sum:1}
+            }
+        },
+        {
+            $sort:{count:-1}
+        }
+    ])
+    
+    res.status(200).json({
+        status :'success',
+        leaves
+    })
+});
 
